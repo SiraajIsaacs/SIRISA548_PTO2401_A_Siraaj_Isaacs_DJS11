@@ -17,7 +17,10 @@ const App = () => {
   return (
     <Router>
       <nav className="nav-bar">
-        <Link to="/">Home</Link> | <Link to="/favorites">Favorites</Link>
+        <h1>Podcast App</h1>
+          <div className="navi">
+            <Link to="/">Home</Link> | <Link to="/favorites">Favorites</Link>
+          </div>
       </nav>
       <Routes>
         <Route path="/" element={<Home onFavorite={handleFavorite} />} />

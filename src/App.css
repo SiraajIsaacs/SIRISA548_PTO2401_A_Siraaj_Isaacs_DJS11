@@ -10,12 +10,18 @@ body {
   display: flex;
   gap: 1rem;
   padding: 1rem;
-  justify-content: center;
+  justify-content: space-between;
   background-color: lightblue;
   color: white;
-  
 }
 
+.nav-bar .navi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  gap: 1rem;
+}
 .nav-link {
   color: white;
   text-decoration: none;
