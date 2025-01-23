@@ -11,8 +11,8 @@ const PodcastDetail = () => {
     const getPodcast = async () => {
       try {
         const data = await fetchPodcasts();
-        if (data && data.podcasts) {
-          const selectedPodcast = data.podcasts.find(podcast => podcast.id === id);
+        if (data && Array.isArray(data)) {
+          const selectedPodcast = data.find(podcast => podcast.id === id);
           if (selectedPodcast) {
             setPodcast(selectedPodcast);
           } else {
@@ -36,6 +36,13 @@ const PodcastDetail = () => {
       <h2>{podcast.title}</h2>
       <p>{podcast.description}</p>
       <img src={podcast.image} alt={podcast.title} width="300" />
+      
+      {/* Audio player */}
+      <h3>Listen to this Episode</h3>
+      <audio controls>
+        <source src="https://podcast-api.netlify.app/placeholder-audio.mp3" type="audio/mp3" />
+        Your browser does not support the audio element.
+      </audio>
     </div>
   );
 };
