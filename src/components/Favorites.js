@@ -8,16 +8,26 @@ const Favorites = ({ favorites = [] }) => {
   return (
     <div>
       <h2>Your Favorites</h2>
-      {favorites.map((fav) => (
-        <div key={fav.id}>
-          <h3>{fav.title}</h3>
-          <img src={fav.image} alt={fav.title} width="200" />
-            <p>{fav.description}</p>
-            <Player src={"https://pixabay.com/sound-effects/search/random/"} />
+      <div className="container">
+        <div className="row">
+          {favorites.map((fav) => (
+            <div key={fav.id} className="col-4">
+              <div className="podcast-card">
+                <h3>{fav.title}</h3>
+                <img 
+                  src={fav.image} 
+                  alt={fav.title} 
+                  style={{ width: '100%' }} 
+                />
+                <p>{fav.description}</p>
+                <Player audioSrc={"https://podcast-api.netlify.app/placeholder-audio.mp3"} />
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
-};
+}
 
 export default Favorites;
