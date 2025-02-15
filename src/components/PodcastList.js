@@ -1,32 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchPodcasts } from '../api';
 
-const PodcastList = ({ onFavorite }) => {
-  const [podcasts, setPodcasts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1); // Page state
-  const podcastsPerPage = 12; // Number of podcasts per page
-
-  useEffect(() => {
-    const getPodcasts = async () => {
-      try {
-        const data = await fetchPodcasts();
-        console.log("Fetched data:", data);
-        if (data && Array.isArray(data)) {
-          setPodcasts(data);
-        } else {
-          setError('No podcasts available');
-        }
-      } catch (err) {
-        setError('Failed to load podcasts');
-      } finally {
-        setLoading(false);
-      }
-    };
-    getPodcasts();
-  }, []);
+const PodcastList = ({ podcasts, onFavorite }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const podcastsPerPage = 12;
 
   // Helper function to truncate descriptions
   const truncateDescription = (description, wordLimit) => {
@@ -36,15 +13,12 @@ const PodcastList = ({ onFavorite }) => {
       : description;
   };
 
-  if (loading) return <p>Loading podcasts...</p>;
-  if (error) return <p>{error}</p>;
-
   // Calculate indexes for current podcasts
   const indexOfLastPodcast = currentPage * podcastsPerPage;
   const indexOfFirstPodcast = indexOfLastPodcast - podcastsPerPage;
   const currentPodcasts = podcasts.slice(indexOfFirstPodcast, indexOfLastPodcast);
 
-  // Calculate total number of pages
+  // Calculate total pages
   const totalPages = Math.ceil(podcasts.length / podcastsPerPage);
 
   // Handle page change
