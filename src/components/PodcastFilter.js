@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 
-// Mapping genre numbers to names
 const genreNames = {
-  1: "Comedy",
-  2: "News",
-  3: "Education",
-  4: "Technology",
-  5: "Health",
-};
+    1: "Personal Growth",
+    2: "Investigative Journalism",
+    3: "History",
+    4: "Comedy",
+    5: "Entertainment",
+    6: "Business",
+    7: "Fiction",
+    8: "News",
+    9: "Kids and Family"
+  };
 
 const PodcastFilter = ({ podcasts, onFilter }) => {
   const [selectedGenre, setSelectedGenre] = useState("");
