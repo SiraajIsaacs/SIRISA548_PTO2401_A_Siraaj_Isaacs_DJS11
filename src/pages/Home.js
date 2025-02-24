@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import PodcastList from "../components/PodcastList";
-import PodcastFilter from "../components/PodcastFilter";
-import { fetchPodcasts } from "../api"; // Fetch from API in Home.js
+import React, { useState, useEffect } from 'react';
+import PodcastList from '../components/PodcastList';
+import PodcastFilter from '../components/PodcastFilter';
+import { fetchPodcasts } from '../api';
 
 const Home = ({ onFavorite }) => {
   const [podcasts, setPodcasts] = useState([]);
@@ -9,20 +9,21 @@ const Home = ({ onFavorite }) => {
 
   useEffect(() => {
     const getPodcasts = async () => {
-      try {
-        const data = await fetchPodcasts();
-        setPodcasts(data);
-        setFilteredPodcasts(data); // Default: show all
-      } catch (err) {
-        console.error("Error fetching podcasts:", err);
-      }
+      const data = await fetchPodcasts();
+      setPodcasts(data);
+      setFilteredPodcasts(data);
     };
     getPodcasts();
   }, []);
 
+  // Filter handler
+  const handleFilter = (filtered) => {
+    setFilteredPodcasts(filtered);
+  };
+
   return (
     <div>
-      <PodcastFilter podcasts={podcasts} onFilter={setFilteredPodcasts} />
+      <PodcastFilter podcasts={podcasts} onFilter={handleFilter} />
       <PodcastList podcasts={filteredPodcasts} onFavorite={onFavorite} />
     </div>
   );

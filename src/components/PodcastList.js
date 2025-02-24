@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+// Genre mappings
+const genreNames = {
+  1: "Comedy",
+  2: "News",
+  3: "Education",
+  4: "Technology",
+  5: "Health",
+};
+
 const PodcastList = ({ podcasts, onFavorite }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const podcastsPerPage = 12;
@@ -36,6 +45,10 @@ const PodcastList = ({ podcasts, onFavorite }) => {
               </Link>
               <img src={podcast.image} alt={podcast.title} width="200" />
               <p>{truncateDescription(podcast.description, 20)}</p>
+              <p>
+                <strong>Genres: </strong>
+                {podcast.genres.map((genreId) => genreNames[genreId]).join(", ")}
+              </p>
               <button onClick={() => onFavorite(podcast)}>Favorite</button>
             </div>
           ))}
