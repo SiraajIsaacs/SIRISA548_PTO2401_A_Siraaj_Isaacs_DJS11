@@ -57,7 +57,7 @@ const PodcastList = ({ podcasts, onFavorite }) => {
           ))}
         </div>
       ) : (
-        <p>No podcasts found</p>
+        <p>Loading...</p>
       )}
 
       {/* Pagination controls */}

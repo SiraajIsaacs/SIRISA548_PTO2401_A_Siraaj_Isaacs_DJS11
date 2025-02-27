@@ -31,13 +31,15 @@ const PodcastDetail = () => {
   if (error) return <p>{error}</p>;
   if (!podcast) return <p>Loading podcast details...</p>;
 
+  // Date formatting
+  const lastUpdated = podcast.updated ? new Date(podcast.updated).toLocaleDateString() : "Unknown";
+
   return (
     <div>
       <h2>{podcast.title}</h2>
       <p>{podcast.description}</p>
       <img src={podcast.image} alt={podcast.title} width="300" />
-      
-      {/* Audio player */}
+      <h4>Last Updated: {lastUpdated}</h4>
       <h3>Listen to this Episode</h3>
       <audio controls>
         <source src="https://podcast-api.netlify.app/placeholder-audio.mp3" type="audio/mp3" />
